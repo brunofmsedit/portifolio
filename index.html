@@ -1,457 +1,123 @@
-<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bruno Machado - Editor de Vídeo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Variáveis para cores e estilos */
-        :root {
-            --primary-color: #000000;
-            --secondary-color: #ffffff;
-            --accent-color: #25D366; /* Cor do WhatsApp */
-            --instagram-color: #E1306C; /* Cor do Instagram */
-            --text-color: #ffffff;
-            --card-bg: rgba(0, 0, 0, 0.7);
-            --transition: all 0.3s ease;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Bruno Machado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
 
-        /* Reset e estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    
+    :root{
 
-        body {
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--primary-color);
-            overflow-x: hidden;
-        }
+    --bg:#0e0e0e;
+    --white:#f9f9f9;
+    --muted:#cfcfcf;
+    --accent:#fff;
+    --trans:0.3s ease;
+  }
 
-        /* Container principal */
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+  @media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
 
-        /* Cabeçalho */
-        header {
-            background-color: rgba(0, 0, 0, 0.9);
-            color: var(--secondary-color);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+  .feedback-content {
+    flex-direction: column;
+  }
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  .feedback-content img {
+    width: 90%;
+    max-width: 300px;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:"Poppins",sans-serif;
+    background:radial-gradient(black,rgb(37, 37, 37)
+    );
+    color:var(--white);
+    margin: auto;
+    text-align: center;
+  }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            letter-spacing: 1px;
-            color: var(--secondary-color);
-        }
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    height:64px;
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 5%;
+    z-index:1000;
+  }
+  nav img{height:40px;}
+  nav ul{display:flex;list-style:none;gap:28px;}
+  nav a{
+      color:var(--white);
+      text-decoration:none;
+      font-weight:500;
+      position:relative;
+      transition:all var(--trans);
+    }
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;bottom:-6px;
+      height:2px;width:0;
+      background:var(--accent);
+      transition:width var(--trans);
+    }
+    nav a:hover::after{width:100%}
+    nav a:hover{transform:scale(1.05)}
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:100%;
+    padding:0px 5% 0px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    background:url('https://images.unsplash.com/photo-1607112812619-182cb1c7bb61?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
+    color:white;
+    overflow:hidden;
+    margin: auto;
+  }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
+  /* camada escura pra legibilidade */
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(120deg,rgba(25, 25, 25, 0.85),rgba(0,0,0,0.65),rgba(43, 43, 43, 0.5));
+    z-index:0;
+  }
 
-        .nav-links a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            position: relative;
-        }
+  /* borda ondulada no fim da seção */
+  .hero::after{
+    content:"";
+    position:absolute;
+    bottom:-1px;
+    left:0;
+    width:100%;
+    height:10px;
+    background:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%230e0e0e" d="M0,288L48,272C96,256,192,224,288,186.7C384,149,480,107,576,122.7C672,139,768,213,864,245.3C960,277,1056,267,1152,240C1248,213,1344,171,1392,149.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom no-repeat;
+    background-size:auto;
+    z-index:1;
+  }
 
-        .nav-links a:hover {
-            color: white;
-        }
+  .bonus-stats {
+                flex-direction: column;
+                gap: 20px;
+            } 
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: white;
-            transition: var(--transition);
-        }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Botões Flutuantes */
-        .social-floats {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 100;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: var(--transition);
-            animation: pulse 2s infinite;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            position: relative;
-        }
-
-        .whatsapp-btn {
-            background-color: var(--accent-color);
-        }
-
-        .instagram-btn {
-            background-color: var(--instagram-color);
-        }
-
-        .social-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .whatsapp-btn:hover {
-            box-shadow: 0 6px 20px rgba(254, 255, 254, 0.7);
-        }
-
-        .instagram-btn:hover {
-            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.7);
-        }
-
-        .social-text {
-            position: absolute;
-            right: 60px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--primary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            white-space: nowrap;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .social-btn:hover .social-text {
-            opacity: 1;
-            visibility: visible;
-            right: 65px;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-            }
-            70% {
-                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-            }
-            100% {
-                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-            }
-        }
-
-        /* Seção Hero */
-        .hero {
-            height: 55vh;
-            display: flex;
-            align-items: center;
-            color: var(--secondary-color);
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.105), rgba(19, 18, 18, 0.199)), 
-                        url('https://images.unsplash.com/photo-1607112812619-182cb1c7bb61?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
-            z-index: -1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            text-align: center;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            opacity: 0.9;
-        }
-
-        /* Seção Sobre */
-        .about {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
-            position: relative;
-            color: var(--secondary-color);
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
-        }
-
-        .about-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .about-text {
-            flex: 1;
-            opacity: 0;
-            transform: translateX(-30px);
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .about-text.animated {
-            animation: fadeInLeft 1s ease forwards;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .about-img {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            opacity: 0;
-            transform: translateX(30px);
-        }
-
-        .about-img.animated {
-            animation: fadeInRight 1s ease forwards;
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        /* Habilidades */
-        .skills {
-            width: 100%;
-        }
-
-        .skills h3 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-            color: var(--secondary-color);
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .skill-item {
-            background: var(--card-bg);
-            padding: 25px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .skill-item.animated {
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .skill-item:nth-child(1) { animation-delay: 0.1s; }
-        .skill-item:nth-child(2) { animation-delay: 0.2s; }
-        .skill-item:nth-child(3) { animation-delay: 0.3s; }
-        .skill-item:nth-child(4) { animation-delay: 0.4s; }
-
-        .skill-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-        }
-
-        .skill-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-
-        .skill-item p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        /* Seção Portfólio */
-        .portfolio {
-            padding: 100px 0;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .portfolio-item {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
-
-        .portfolio-item.animated {
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        .portfolio-item:nth-child(1) { animation-delay: 0.2s; }
-        .portfolio-item:nth-child(2) { animation-delay: 0.4s; }
-        .portfolio-item:nth-child(3) { animation-delay: 0.6s; }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(142, 141, 141, 0.6), 0 0 20px rgba(255, 255, 255, 0.2);
-        }
-
-        .portfolio-link {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .portfolio-img {
-            height: 200px;
-            background: linear-gradient(45deg, #222, #000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--secondary-color);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .portfolio-info {
-            padding: 25px;
-        }
-
-        .portfolio-info h3 {
-            margin-bottom: 15px;
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-        }
-
-        .portfolio-info p {
-            opacity: 0.8;
-        }
-
-        /* Seção Bônus (Analytics) */
-        .bonus {
-            padding: 100px 0;
-        }
-
-        .bonus-content {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transform: translateY(30px);
-            backdrop-filter: blur(5px);
-        }
-
-        .bonus-content.animated {
+            .bonus-content.animated {
             animation: fadeInUp 1s ease forwards;
         }
 
@@ -461,9 +127,9 @@
             flex-wrap: wrap;
             gap: 30px;
             margin-top: 40px;
-        }
 
-        .stat {
+        }
+         .stat {
             text-align: center;
             flex: 1;
             min-width: 200px;
@@ -481,391 +147,500 @@
             font-size: 1.1rem;
             opacity: 0.8;
         }
+        .home {
+  min-height: 70vh; /* antes era 100vh */
+  padding: 80px 5% 40px;
+}
 
-        .analytics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
-        }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:650px;
+    margin: auto;
+  }
 
-        .analytics-item {
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+  .hero h1{
+    font-size: 4rem;;
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:1rem;
+    text-align: center;
+  }
 
-        .analytics-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(45deg, #222, #000);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-        }
+  .hero p{
+    color:var(--muted);
+    font-size:1.05rem;
+    margin-bottom:2rem;
+    max-width:55ch;
+  }
 
-        .analytics-info {
-            padding: 20px;
-            text-align: center;
-        }
+  .cta{
+    display:flex;
+   justify-content: center;
+    padding:12px 28px;
+    background:none;
+    color:var(--white);
+    border:1px solid var(--white);
+    border-radius:30px;
+    font-weight:600;
+    text-decoration:none;
+    transition:all .3s ease;
+  }
+  .cta:hover{
+    background:white;
+    color:black;
+    transform:translateY(-3px);
+  }
 
-        /* Seção Contato */
-        .contact {
-            padding: 100px 0;
-        }
+  @media(max-width:800px){
+    .hero{
+      padding:120px 6% 120px;
+      background-position:center;
+    }
+    .hero h1{font-size:2.6rem;}
+  }
+    :root {
+      --cor-fundo: #0e0e0e;
+      --cor-texto: #f9f9f9;
+      --cor-linha: #ffffff;
+      --cor-cinza: #cccccc;
+      --transicao: 0.25s ease;
+    }
 
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(30px);
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .contact-content.animated {
-            animation: fadeInUp 1s ease forwards;
-        }
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
 
-        .contact-content p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
+    .avaliacoes-texto {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeIn 1.2s ease-in-out;
+}
 
-        .contact-btn {
-            display: inline-block;
-            background: transparent;
-            color: var(--secondary-color);
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: var(--transition);
-            border: 2px solid var(--secondary-color);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        }
+.avaliacoes-texto p {
+  font-size: 1.2rem;
+  color: #ddd;
+  margin-bottom: 0.5rem;
+}
 
-        .contact-btn:hover {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
-        }
+.estrelas {
+  font-size: 2rem;
+  color: gold;
+  letter-spacing: 4px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
 
-        /* Rodapé */
-        footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: var(--secondary-color);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
+/* animação simples */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    /* -------------------- NAV -------------------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      border-bottom: 5px solid rgba(0, 0, 0, 0.05);
+      z-index: 100;
+    }
 
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+    nav img {
+      height: 45px;
+      width: auto;
+    }
 
-        .social-links a {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-            transition: var(--transition);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(0, 0, 0, 0.3);
-        }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
 
-        .social-links a:hover {
-            color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+    nav a {
+      text-decoration: none;
+      color: var(--cor-texto);
+      font-weight: 500;
+      position: relative;
+      transition: var(--transicao);
+    }
 
-        .copyright {
-            margin-top: 20px;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0%;
+      height: 2px;
+      background-color: var(--cor-linha);
+      transition: var(--transicao);
+    }
 
-        /* Animações */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    nav a:hover {
+      transform: scale(1.05);
+      color: var(--cor-texto);
+    }
 
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    nav a:hover::after {
+      width: 100%;
+    }
 
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+    /* -------------------- SEÇÕES -------------------- */
+    section {
+      padding: 100px 5% 60px;
+      min-height: 100vh;
+    }
 
-        /* Responsividade */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .about-content {
-                flex-direction: column-reverse;
-            }
-            
-            .profile-img {
-                width: 250px;
-                height: 250px;
-                margin-bottom: 30px;
-            }
+    .home {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      max-width: 700px;
+      margin-top: 60px;
+    }
 
-            .nav-links {
-                gap: 15px;
-                font-size: 0.9rem;
-            }
-            
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .home h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--cor-texto);
+    }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .bonus-stats {
-                flex-direction: column;
-                gap: 20px;
-            }
+    .home p {
+      font-size: 1.1rem;
+      color: var(--cor-cinza);
+    }
 
-            .nav-links {
-                display: none;
-            }
+    .sobre, .portfolio, .feedback, .contato {
+      max-width: 70%;
+      margin: 0 auto;
+    }
 
-            .header-content {
-                justify-content: center;
-            }
-            
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .sobre h2, .portfolio h2, .feedback h2, .contato h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 10px;
+  border-left: none;
+ 
+  text-align: center; /* opcional, se quiser tudo centralizado */
+  color: var(--cor-texto);
+}
+    .sobre p {
+      font-size: 1.05rem;
+      color: #ddd;
+      margin-bottom: 1rem;
+    }
 
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .social-floats {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
-            
-            .hero-content, 
-            .about-text, 
-            .bonus-content, 
-            .contact-content {
-                padding: 25px;
-            }
+    /* -------------------- PORTFÓLIO -------------------- */
+   .video-bloco {
+  background: rgba(19, 19, 19, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  transition: all 0.3s ease;
+}
 
-            .social-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
-            }
+.video-bloco:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
 
-            .social-text {
-                font-size: 0.8rem;
-                padding: 6px 12px;
-            }
-        }
-    </style>
+.video-bloco h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: var(--cor-texto);
+}
+
+.video-bloco iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 0.75rem;
+}
+.feedback {
+  text-align: center;
+  padding: 100px 5% 80px;
+}
+
+.feedback h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--cor-linha);
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.feedback-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.feedback-flex img {
+  width: 320px;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+  transition: transform 0.4s ease;
+}
+
+.feedback-flex img:hover {
+  transform: scale(1.03);
+}
+
+.avaliacoes-texto {
+  max-width: 400px;
+  text-align: left;
+}
+
+.avaliacoes-texto h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.6rem;
+  color: var(--cor-texto);
+}
+
+.avaliacoes-texto p {
+  color: #ddd;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.estrelas {
+  font-size: 2rem;
+  color: gold;
+  letter-spacing: 4px;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+@media (max-width: 800px) {
+  .feedback-flex {
+    flex-direction: column;
+  }
+  .avaliacoes-texto {
+    text-align: center;
+  }
+}
+.video-bloco p {
+  color: rgb(83, 83, 83)
+  font-size: 1rem;
+}
+
+    .feedback h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.feedback-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "img1 img2"
+    "img1 img3";
+  gap: 1.2rem;
+}
+
+.feedback-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  object-fit: contain;
+  background-color: rgba(255,255,255,0.02);
+  padding: 4px;
+}
+
+.feedback-grid img:nth-child(1) { grid-area: img1; }
+.feedback-grid img:nth-child(2) { grid-area: img2; }
+.feedback-grid img:nth-child(3) { grid-area: img3; }
+
+/* responsividade */
+@media (max-width: 768px) {
+  .feedback-grid {
+    grid-template-columns: 1fr;
+  }
+  .feedback-grid img:nth-child(1),
+  .feedback-grid img:nth-child(2),
+  .feedback-grid img:nth-child(3) {
+    grid-column: 1;
+    grid-row: auto;
+    height: auto;
+  }
+}
+    /* -------------------- CONTATO -------------------- */
+    .contato p {
+      font-size: 1.05rem;
+      color: #ccc;
+      margin-bottom: 4rem;
+    }
+
+    .contato .btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      padding: 0.9rem 2rem;
+      background: var(--cor-linha);
+      color: #000;
+      font-weight: 600;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: var(--transicao);
+    }
+
+    .contato .btn:hover {
+      transform: scale(1.05);
+      background: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 0.9rem;
+      color: #aaa;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* estado inicial (invisível) */
+.fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+/* quando entra na tela */
+.fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botão flutuante do WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 25px;
+  right: 25px;
+  background-color: #000000;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+  background-color: #20ba5a;
+}
+
+.whatsapp-float i {
+  margin-top: 15px;
+}
+
+
+  </style>
 </head>
-<body>
-    <!-- Cabeçalho -->
-    <header>
-        
-        <div class="container header-content">
-            <div class="logo"><img src="Logotipo Moderno Tecnologia e Gaming Roxo2.png" alt="" width="30%", height="4%"></div>
-            <div class="nav-links">
-                <a href="#about">Sobre</a>
-                <a href="#portfolio">Trabalho</a>
-                <a href="#bonus">Resultados</a>
-                <a href="#contact">Preços</a>
-            </div>
-        </div>
-    </header>
 
-    <!-- Botões Flutuantes -->
-    <div class="social-floats">
-        <a href="https://www.instagram.com/_bruno_fms" target="_blank" class="social-btn instagram-btn">
-            <i class="fab fa-instagram"></i>
-            <div class="social-text">Me contate no instagram</div>
-        </a>
-        <a href="https://wa.me/5515981294442?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto%20de%20edição%20de%20vídeo." target="_blank" class="social-btn whatsapp-btn">
-            <i class="fab fa-whatsapp"></i>
-            <div class="social-text">Me conte sua ideia</div>
-        </a>
+<body >
+    <!-- Botão Flutuante WhatsApp -->
+<a href="https://wa.me/5515981294442?text=Vi%20seu%20portf%C3%B3lio%20e%20quero%20come%C3%A7ar%20um%20projeto!"
+   class="whatsapp-float" target="_blank" aria-label="Fale comigo no WhatsApp">
+   <i class="fab fa-whatsapp"></i>
+</a>
+<!-- Ícones do Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+<!-- Ícones Font Awesome (caso ainda não tenha no <head>) -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <nav>
+  <div class="logo">
+    <img src="Logotipo Moderno Tecnologia e Gaming Roxo2.png" alt="Logo Bruno Machado">
+  </div>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#portfolio">Trabalho</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Editor de vídeo</h1>
+    <p>     De vídeos curtos para redes sociais a videos horizontais</p>
+    <a href="#portfolio" class="cta">Veja meu trabalho ↓</a>
+  </div>
+</section>
+
+
+ 
+  <section id="sobre" class="sobre">
+    <h2>Sobre mim</h2>
+    <p>Olá, eu sou editor de vídeo com experiência em diversos formatos e estilos de conteúdo. Tenho afinidade em vídeos com enredo e que buscam prender a atenção.</p>
+    <p>Desde vídeos curtos para redes sociais até documentários e conteúdos mais longos. Meu objetivo é sempre entregar um produto final que agrade tanto ao meu cliente quanto ao seu público.</p>
+    <p>Estou constantemente me atualizando com as tendências do mercado e novas técnicas de edição para oferecer o melhor resultado possível em cada projeto, por isso estou sempre aberto a sugestões e desafios.</p>
+    <p>Tudo isso por um preço acessível e flexível, e com total compromisso com os prazos.</p>
+  </section>
+
+  <section id="portfolio" class="portfolio">
+    <h2>Conheça Meu Trabalho</h2>
+
+    <div class="video-bloco">
+      <h3>Vídeos Curtos</h3>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=OfHs5OPd5zoUoJDY&amp;list=PL09uWzXjILWawDVoNySMJIGFsm2_AyW0U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></iframe>
+      <p>Edições dinâmicas e impactantes ideais para redes sociais e conteúdos rápidos.</p>
     </div>
 
-    <!-- Seção Hero -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Edição de Vídeo</h1>
-            <p>Não sabe editar ou não tem tempo pra isso, deixa que eu te ajudo!</p>
-        </div>
-    </section>
+    <div class="video-bloco">
+      <h3>Vídeos Longos</h3>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=cGma3uMQDRHxg84T&amp;list=PL09uWzXjILWZF52Vi56KzyeXq7kO8nyju" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      <p>Conteúdos extensos com narrativa cuidadosa e edição detalhada.</p>
+    </div>
 
-    <!-- Seção Sobre -->
-    <section class="about" id="about">
-        <div class="container">
-            <h2 class="section-title">Sobre Mim</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Olá, eu sou, editor de vídeo com experiência em diversos formatos e estilos de conteúdo. Tenho afinidade em videos com enredo e que buscam prender a atenção.</p>
-                    <p>Desde vídeos curtos para redes sociais até documentários e conteúdos mais longos. Meu objetivo é sempre entregar um produto final que agrade tanto ao meu cliente, quanto a seu publico</p>
-                    <p>Estou constantemente me atualizando com as tendências do mercado e novas técnicas de edição para oferecer o melhor resultado possível em cada projeto, por isso estou sempre aberto a sugestões e desafios.</p>
-                    <p>Tudo isso por um preço acessivel e flexivel, e compromisso com os prazos</p>
-                </div>
-                <div class="about-img">
-                    <!-- Substitua pelo caminho da sua foto -->
-                    <img src="picofme (1).png" alt="Bruno Machado" class="profile-img" >
-                </div>
-            </div>
-            
-            <div class="skills">
-                <h3>Habilidades e Serviços Extra</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fas fa-video"></i></div>
-                        <h4>Edição de Vídeo</h4>
-                        <p>Edição profissional para diversos tipos de conteúdo</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fas fa-pen"></i></div>
-                        <h4>Criação de Roteiros</h4>
-                        <p>Desenvolvimento de narrativas envolventes</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fas fa-image"></i></div>
-                        <h4>Thumbnails</h4>
-                        <p>Criação de thumbnails atraentes e clickáveis</p>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
-                        <h4>SEO para Vídeos</h4>
-                        <p>Otimização para melhor performance</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="video-bloco">
+      <h3>Canais Dark</h3>
+       <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?si=MVGL6ajqnoMixOxb&amp;list=PL09uWzXjILWbc1-CB_UT5yCBk0Y-TM8bi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </iframe>
+      <p>Conteúdos com temática mais séria e atmosfera imersiva.</p>
+    </div>
+  </section>
 
-    <!-- Seção Portfólio -->
-    <section class="portfolio" id="portfolio">
-        <div class="container">
-            <h2 class="section-title">Conheça Meu Trabalho</h2>
-            <div class="portfolio-grid">
-                <!-- Item 1 - Vídeos Curtos -->
-                <div class="portfolio-item">
-                    <a href="https://youtube.com/playlist?list=PL09uWzXjILWawDVoNySMJIGFsm2_AyW0U&si=-exAPCrVgfi8q0E_" target="_blank" class="portfolio-link">
-                        <div class="portfolio-img">
-                            <img src="Miniatura pra youtube react de vídeo simples laranja.png" alt="" width="100%">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Vídeos Curtos</h3>
-                            <p>Edições dinâmicas e impactantes ideais para redes sociais e conteúdos rápidos.</p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Item 2 - Vídeos Longos -->
-                <div class="portfolio-item">
-                    <a href="https://www.youtube.com/playlist?list=PL09uWzXjILWZF52Vi56KzyeXq7kO8nyju" target="_blank" class="portfolio-link">
-                        <div class="portfolio-img">
-                           
-                            <img src="Miniatura pra youtube react de vídeo simples laranja (1).png" alt="" width="100%">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Vídeos Longos</h3>
-                            <p>Conteúdos extensos com narrativa cuidadosa e edição detalhada.</p>
-                        </div>
-                    </a>
-                </div>
-                
-                <!-- Item 3 - Canais Dark -->
-                <div class="portfolio-item">
-                    <a href="https://www.youtube.com/playlist?list=PL09uWzXjILWbc1-CB_UT5yCBk0Y-TM8bi" target="_blank" class="portfolio-link">
-                        <div class="portfolio-img">
-                          <img src="Miniatura pra youtube react de vídeo simples laranja (2).png" alt="" width="100%">
-                        </div>
-                        <div class="portfolio-info">
-                            <h3>Canais Dark</h3>
-                            <p>Conteúdos com temática mais séria e atmosfera intensa.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Bônus (Analytics) -->
-    <section class="bonus" id="bonus">
+  <section class="bonus" id="bonus">
         <div class="container">
             <h2 class="section-title">Resultados Comprovados</h2>
             <div class="bonus-content">
@@ -886,117 +661,59 @@
                     </div>
                 </div>
                 
-                <h3 style="margin-top: 40px; text-align: center;">Análises de Retenção</h3>
-                <div class="analytics-grid">
-                    <div class="analytics-item">
-                        <div class="analytics-img">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <div class="analytics-info">
-                            <h4>Análise de Audiência</h4>
-                            <p>Retenção acima da média do YouTube</p>
-                        </div>
-                    </div>
-                    <div class="analytics-item">
-                        <div class="analytics-img">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="analytics-info">
-                            <h4>Desempenho</h4>
-                            <p>Alto engajamento e tempo de assistência</p>
-                        </div>
-                    </div>
-                    <div class="analytics-item">
-                        <div class="analytics-img">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="analytics-info">
-                            <h4>Crescimento</h4>
-                            <p>Aumento consistente de inscritos</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Seção Contato -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Vamos Trabalhar Juntos?</h2>
-            <div class="contact-content">
-                <p>Entre em contato para discutir seu projeto e como posso ajudar a transformar suas ideias em realidade.</p>
-                <h2>Tabelação aproximada de preços:</h2>
-                <p></p>
-                <div>Video Curto = R$15,00</div>
-                <div>Video Longo (5-10min) = R$40,00 </div>
-                <div>Video Longo (10-20min) = R$50,00</div>
-                <p></p>
-                <p>Preços podem variar de acordo com a demanda, e estou aberto a negociações para cada negócio</p>
-                <a href="https://wa.me/5515981294442?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto%20de%20edição%20de%20vídeo." target="_blank" class="contact-btn">Iniciar Projeto</a>
-            </div>
-        </div>
-    </section>
+ <!-- <section id="feedback" class="feedback">
+    <h2>Feedback dos Clientes</h2>
+    <div class="feedback-grid">
+      <img src="depoimento 1.png" alt="Depoimento 1">
+      <img src="Depoimento2.png" alt="Depoimento 2">
+      <img src="Depoimento3.png" alt="Depoimento 3">
+    </div>
+  </section> /*-->
+<section id="feedback" class="feedback">
+  <h2>Feedback dos Clientes</h2>
 
-    <!-- Rodapé -->
-    <footer>
-        <div class="container footer-content">
-            <div class="social-links">
-                
-            </div>
-            <p>E-mail para contato: brunofms2022@gmail.com</p>
-            <p class="copyright">&copy; 2024 - Todos os direitos reservados</p>
-        </div>
-    </footer>
+  <div class="feedback-flex">
+    <img src="depoimento 1.png" alt="Depoimento 1">
 
-    <script>
-        // Função para animar elementos ao rolar a página
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.about-text, .about-img, .portfolio-item, .bonus-content, .contact-content, .skill-item');
-            
-            elements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('animated');
-                }
-            });
-        }
+    <div class="avaliacoes-texto" class="feedback fade">
+      <h3>Avaliações Positivas</h3>
+      <p>Clientes satisfeitos com resultados incríveis e entregas pontuais!</p>
+      <div class="estrelas">
+        ★★★★★
+      </div>
+    </div>
+  </div>
+</section>
+  
 
-        // Inicializar animações quando a página carregar
-        window.addEventListener('load', () => {
-            animateOnScroll();
-        });
+  <section id="contato" class="contato">
+    <h2>Vamos Trabalhar Juntos?</h2>
+    <p>Entre em contato para discutir seu projeto e como posso ajudar a transformar suas ideias em realidade.</p>
+    <p>Tabelação aproximada de <strong>R$6,00 por hora</strong> trabalhada.<br>Preços podem variar de acordo com a demanda, e estou aberto a negociações para cada negócio.</p>
+    
+    <a class="btn" href="https://wa.me/5515981294442?text=Vi%20seu%20portfólio%20e%20quero%20começar%20um%20projeto" target="_blank">Iniciar Projeto</a>
+  </section>
 
-        // Verificar elementos ao rolar
-        window.addEventListener('scroll', animateOnScroll);
+  <footer>
+    <p>E-mail para contato: <a href="mailto:brunofms2022@gmail.com">brunofms2022@gmail.com</a></p>
+    <p>© 2024 - Todos os direitos reservados</p>
+  </footer>
 
-        // Smooth scroll para links de navegação
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    </script>
+  <script>
+  const faders = document.querySelectorAll('.fade');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+      } else {
+        entry.target.classList.remove('show'); // remove pra permitir fade out
+      }
+    });
+  }, { threshold: 0.2 });
+
+  faders.forEach(fade => observer.observe(fade));
+</script>
 </body>
-
 </html>
-
-
-
-
-
-
-
